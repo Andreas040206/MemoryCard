@@ -1,0 +1,21 @@
+body {
+  margin: 0px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.jus-cen {
+  justify-content: center;
+}
+
+.ali-cen {
+  align-items: center;
+}
+
+.cen {
+  justify-content: center;
+  align-items: center;
+}

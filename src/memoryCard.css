@@ -1,0 +1,23 @@
+.memocards-list {
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+.memocard-con {
+  border: black solid 5px;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.memocard-img {
+  object-fit: cover;
+  height: 300px;
+  width: 200px;
+}
+
+.memocard-con:hover {
+  scale: 1.05;
+}
