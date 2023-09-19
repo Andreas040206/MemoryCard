@@ -1,5 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Gluten&display=swap");
+
 body {
   margin: 0px;
+  font-family: "Gluten", cursive;
+  background-color: #8f5c18;
 }
 
 .flex-row {

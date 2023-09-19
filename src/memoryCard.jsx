@@ -151,10 +151,13 @@ const MemoCardsCon = () => {
   };
 
   return (
-    <div className="flex-row jus-cen">
-      <div>
-        <span>Score: {clikedCount}</span>
-        <span>highscore: {highscore}</span>
+    <div className="flex-col jus-cen">
+      <div className="headerbar flex-row ali-cen">
+        <span>Momory Card</span>
+        <div className="score-con flex-row">
+          <span>Score: {clikedCount}</span>
+          <span>Highscore: {highscore}</span>
+        </div>
       </div>
       <div className="memocards-list flex-row jus-cen">{mixedKeyWordsList}</div>
       {LooseDisplay()}

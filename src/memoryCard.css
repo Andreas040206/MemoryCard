@@ -40,3 +40,20 @@
   font-weight: 700;
   padding: 0px;
 }
+
+.headerbar {
+  height: 80px;
+  position: sticky;
+  background-color: #b6731c;
+  top: 0px;
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.237);
+  justify-content: space-between;
+  padding: 0px max(4vw, 20px);
+  font-size: min(40px, 5vw);
+  z-index: 50;
+}
+
+.score-con {
+  gap: 5vw;
+  font-size: min(20px, 4vw);
+}
