@@ -9,7 +9,7 @@ const mixAry = (ary) => {
       return;
     }
 
-    let num = Math.floor(Math.random() * (ary.length - 1));
+    let num = Math.floor(Math.random() * ary.length);
 
     list.push(ary[num]);
     ary.splice(num, 1);
