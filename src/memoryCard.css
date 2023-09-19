@@ -11,6 +11,7 @@
   overflow: hidden;
   transition: 0.3s;
   background-color: black;
+  user-select: none;
 }
 
 .memocard-img {
@@ -20,4 +21,22 @@
 
 .memocard-con:hover {
   scale: 1.05;
+}
+
+.looseOverLay-con {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.759);
+  top: 0px;
+}
+
+.looseOverLay-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  font-size: 70px;
+  color: white;
+  font-weight: 700;
+  padding: 0px;
 }

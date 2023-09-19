@@ -2,14 +2,26 @@ import "./memoryCard.css";
 import { useEffect, useState } from "react";
 import { mixAry } from "./tools";
 
-const MemoCard = ({ keyWord, cardInfo, cardId, cardChangeHandler }) => {
+const MemoCard = ({
+  keyWord,
+  cardInfo,
+  cardId,
+  cardChangeHandler,
+  handleGameOver,
+}) => {
   const [img, setImg] = useState(<img className="memocard-img" />);
 
   const changeHandler = () => {
-    const newCardInfo = { ...cardInfo };
-    newCardInfo[cardId] = true;
+    if (cardInfo[cardId] === true) {
+      // It's been cliked before
+      handleGameOver();
+    } else {
+      // It hasn't been cliked before
+      const newCardInfo = { ...cardInfo };
+      newCardInfo[cardId] = true;
 
-    cardChangeHandler(newCardInfo);
+      cardChangeHandler(newCardInfo);
+    }
   };
 
   useEffect(() => {
@@ -22,7 +34,11 @@ const MemoCard = ({ keyWord, cardInfo, cardId, cardChangeHandler }) => {
       })
       .then((data) => {
         setImg(
-          <img src={data.data.images.original.url} className="memocard-img" />
+          <img
+            src={data.data.images.original.url}
+            draggable="false"
+            className="memocard-img"
+          />
         );
       });
   }, []);
@@ -48,6 +64,38 @@ const MemoCardsCon = () => {
     10: false,
   });
 
+  const [gameOver, setGameOver] = useState(false);
+
+  const handleGameOver = () => {
+    setGameOver(true);
+  };
+
+  const newGameHandler = () => {
+    setCardInfo({
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+      9: false,
+      10: false,
+    });
+    setGameOver(false);
+  };
+
+  const cardInfoValues = Object.values(cardInfo);
+
+  const clikedCount = cardInfoValues.filter((value) => value === true).length;
+
+  const [highscore, setHighscore] = useState(0);
+
+  if (clikedCount > highscore) {
+    setHighscore(clikedCount);
+  }
+
   const handleCardInfo = (newCardInfo) => {
     setCardInfo(newCardInfo);
   };
@@ -63,6 +111,14 @@ const MemoCardsCon = () => {
     "evil",
     "shocked",
     "relaxed",
+    "satisfied",
+    "clapped",
+    "wierd",
+    "gymbro",
+    "working",
+    "bodybuilder",
+    "supercar",
+    "fail",
   ];
 
   const memoCardList = keyWordList.map((listItem, index) => {
@@ -73,15 +129,35 @@ const MemoCardsCon = () => {
         cardInfo={cardInfo}
         cardId={index}
         cardChangeHandler={handleCardInfo}
+        handleGameOver={handleGameOver}
       />
     );
   });
 
   const mixedKeyWordsList = mixAry(memoCardList);
 
+  const LooseDisplay = () => {
+    if (gameOver === true) {
+      return (
+        <div className="looseOverLay-con flex-row cen" onClick={newGameHandler}>
+          <button className="looseOverLay-btn">
+            Ups, you cliked the same card twice...
+          </button>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div className="flex-row jus-cen">
+      <div>
+        <span>Score: {clikedCount}</span>
+        <span>highscore: {highscore}</span>
+      </div>
       <div className="memocards-list flex-row jus-cen">{mixedKeyWordsList}</div>
+      {LooseDisplay()}
     </div>
   );
 };
